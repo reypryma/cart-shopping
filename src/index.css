@@ -181,6 +181,7 @@ button:hover{
     align-items: center;
     width: 100%;
 }
+/*> will target elements which are DIRECT children of a particular element.*/
 .total > div {
     font-size: 2rem;
 }

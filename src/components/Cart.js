@@ -49,7 +49,8 @@ class Cart extends React.Component {
                                             </div>
                                             <div className="right">
                                                 {formatCurrency(item.price)}x{item.count}{" "}
-                                                <button className="button" onClick={()=>this.props.removeFromCart(item)}>
+                                                <button className="button"
+                                                        onClick={() => this.props.removeFromCart(item)}>
                                                     Remove
                                                 </button>
                                             </div>
@@ -60,22 +61,24 @@ class Cart extends React.Component {
                         </ul>
                     </div>
                 </div>
-                <div className="cart">
-                    <div className="total">
-                        <div>
-                            Total: {" "}
-                            {
-                                formatCurrency(
-                                    cartItems.reduce(
-                                        (a, current)=>
-                                            a + current.price * current.count, 0
+                {cartItems.length !== 0 && (
+                    <div className="cart">
+                        <div className="total">
+                            <div>
+                                Total: {" "}
+                                {
+                                    formatCurrency(
+                                        cartItems.reduce(
+                                            (a, current) =>
+                                                a + current.price * current.count, 0
+                                        )
                                     )
-                                )
-                            }
+                                }
+                            </div>
+                            <button className="button primary">Proceed</button>
                         </div>
-                        <button className="button primary">Proceed</button>
                     </div>
-                </div>
+                )}
             </div>
         );
     }
