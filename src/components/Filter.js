@@ -26,7 +26,7 @@ class Filter extends React.Component {
                 <div className="filter-result">{this.props.count} Products</div>
                 <div className="filter-sort">
                     Order {" "}
-                    <select name="" id="">
+                    <select name="" id="" value={this.props.sort} onChange={this.props.sortProducts}>
                         <option>Latest</option>
                         <option value="lowest">Lowest</option>
                         <option value="highest">Highest</option>
@@ -34,7 +34,7 @@ class Filter extends React.Component {
                 </div>
                 <div className="filter-size">
                     Filter {" "}
-                    <select name="" id="">
+                    <select name="" id="" value={this.props.size} onChange={this.props.filterProducts}>
                         <option value="">ALL</option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
