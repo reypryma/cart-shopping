@@ -1,4 +1,5 @@
 import React from 'react';
+import formatCurrency from "../utils/util";
 
 class Cart extends React.Component {
     static navigationOptions = {title: null,};
@@ -37,7 +38,7 @@ class Cart extends React.Component {
                     <div className="cart">
                         <ul className="cart-items">
                             {cartItems.map(
-                                item=>(
+                                item => (
                                     <li key={cartItems._id}>
                                         <div>
                                             <img src={item.image} alt={item.title}/>
@@ -46,9 +47,12 @@ class Cart extends React.Component {
                                             <div>
                                                 {item.title}
                                             </div>
-                                            <button>
-                                                Remove
-                                            </button>
+                                            <div className="right">
+                                                {formatCurrency(item.price)}x{item.count}{" "}
+                                                <button className="button" onClick={()=>this.props.removeFromCart(item)}>
+                                                    Remove
+                                                </button>
+                                            </div>
                                         </div>
                                     </li>
                                 )

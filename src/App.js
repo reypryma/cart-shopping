@@ -66,6 +66,17 @@ class App extends React.Component {
         this.setState({cartItems});
     };
 
+    removeFromCart = (product) => {
+        const cartItems = this.state.cartItems.slice();
+        this.setState(
+            {
+                cartItems: cartItems.filter(
+                    (x) => x._id !== product._id
+                )
+            }
+        )
+    };
+
     render() {
         return (
             <div className="grid-container">
@@ -89,7 +100,7 @@ class App extends React.Component {
                             />
                         </div>
                         <div className="sidebar">
-                            <Cart cartItems={this.state.cartItems}/>
+                            <Cart cartItems={this.state.cartItems} removeFromCart = {this.removeFromCart}/>
                         </div>
                     </div>
                 </main>
