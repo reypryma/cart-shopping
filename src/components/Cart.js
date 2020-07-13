@@ -60,6 +60,22 @@ class Cart extends React.Component {
                         </ul>
                     </div>
                 </div>
+                <div className="cart">
+                    <div className="total">
+                        <div>
+                            Total: {" "}
+                            {
+                                formatCurrency(
+                                    cartItems.reduce(
+                                        (a, current)=>
+                                            a + current.price * current.count, 0
+                                    )
+                                )
+                            }
+                        </div>
+                        <button className="button primary">Proceed</button>
+                    </div>
+                </div>
             </div>
         );
     }
