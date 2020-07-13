@@ -10,6 +10,7 @@ class App extends React.Component {
             products: data.products,
             size: "",
             sort: "",
+            cartItems: [],
         }
     }
 
@@ -46,6 +47,22 @@ class App extends React.Component {
                     )>=0
                 ),
             })
+        }
+    };
+
+    addToCart=(product)=>{
+        const cartItems = this.state.cartItems.slice();
+        let alreadyInCart = false;
+        cartItems.forEach(
+            item=>{
+                if (item._id === product._id){
+                    item.count++;
+                    alreadyInCart = true;
+                }
+            }
+        );
+        if (!alreadyInCart){
+            cartItems.push({...product, count: 1})
         }
     };
 
