@@ -11,7 +11,8 @@ class App extends React.Component {
             products: data.products,
             size: "",
             sort: "",
-            cartItems: [],
+            cartItems: localStorage.getItem("cartItems")
+                ? JSON.parse(localStorage.getItem("cartItems")) : [],
         }
     }
 
@@ -64,6 +65,8 @@ class App extends React.Component {
             cartItems.push({...product, count: 1});
         }
         this.setState({cartItems});
+        //checkout : data persistent after refresh
+        localStorage.setItem("cartItems", JSON.stringify(this.state.cartItems))
     };
 
     removeFromCart = (product) => {
@@ -74,7 +77,16 @@ class App extends React.Component {
                     (x) => x._id !== product._id
                 )
             }
-        )
+        );
+        //Checkout : make data cart item persistent
+        localStorage.setItem("cartItems", JSON.stringify(
+            cartItems.filter(x => x._id !== product._id)
+        ))
+    };
+
+    //Checkout Logic
+    createOrder = (order) =>{
+        alert("Need to save order for " + order.name);
     };
 
     render() {
@@ -100,7 +112,10 @@ class App extends React.Component {
                             />
                         </div>
                         <div className="sidebar">
-                            <Cart cartItems={this.state.cartItems} removeFromCart = {this.removeFromCart}/>
+                            <Cart cartItems={this.state.cartItems}
+                                  removeFromCart = {this.removeFromCart}
+                                  createOrder = {this.createOrder}
+                            />
                         </div>
                     </div>
                 </main>

@@ -6,8 +6,31 @@ class Cart extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        //by default dont show
+        this.state = {
+            showCheckout: false,
+            name: "",
+            email: "",
+            address: "",
+        }
     }
+
+    handleInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    };
+
+    createOrder = e => {
+        e.preventDefault();
+        const order = {
+            name: this.state.name,
+            email: this.state.email,
+            address: this.state.address,
+            cartItems: this.props.cartItems,
+        };
+        this.props.createOrder(order);
+    };
 
     componentWillMount() {
     }
@@ -62,21 +85,59 @@ class Cart extends React.Component {
                     </div>
                 </div>
                 {cartItems.length !== 0 && (
-                    <div className="cart">
-                        <div className="total">
-                            <div>
-                                Total: {" "}
-                                {
-                                    formatCurrency(
-                                        cartItems.reduce(
-                                            (a, current) =>
-                                                a + current.price * current.count, 0
+                    <div className="">
+                        <div className="cart">
+                            <div className="total">
+                                <div>
+                                    Total: {" "}
+                                    {
+                                        formatCurrency(
+                                            cartItems.reduce(
+                                                (a, current) =>
+                                                    a + current.price * current.count, 0
+                                            )
                                         )
-                                    )
-                                }
+                                    }
+                                </div>
+                                <button onClick={() => {
+                                    this.setState({
+                                        showCheckout: true
+                                    })
+                                }} className="button primary">Proceed
+                                </button>
                             </div>
-                            <button className="button primary">Proceed</button>
                         </div>
+                        {
+                            this.state.showCheckout && (
+                                <div className="cart">
+                                    <form action="" onSubmit={this.createOrder}>
+                                        <ul className="form-container">
+                                            <li>
+                                                <label htmlFor="">
+                                                    Name
+                                                </label>
+                                                <input name="name" type="text" required onChange={this.handleInput}/>
+                                            </li>
+                                            <li>
+                                                <label htmlFor="">
+                                                    Email
+                                                </label>
+                                                <input name="email" type="email" required onChange={this.handleInput}/>
+                                            </li>
+                                            <li>
+                                                <label htmlFor="">
+                                                    Address
+                                                </label>
+                                                <input name="address" type="text" required onChange={this.handleInput}/>
+                                            </li>
+                                            <li>
+                                                <button className="button primary" type="submit">Checkout</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            )
+                        }
                     </div>
                 )}
             </div>
