@@ -86,7 +86,7 @@ class App extends React.Component {
 
     //Checkout Logic
     createOrder = (order) =>{
-        alert("Need to save order for" + order.name);
+        alert("Need to save order for " + order.name);
     };
 
     render() {
