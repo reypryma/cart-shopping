@@ -84,6 +84,11 @@ class App extends React.Component {
         ))
     };
 
+    //Checout Logic
+    createOrder = (order) =>{
+        alert("Need to save order for" + order.name);
+    };
+
     render() {
         return (
             <div className="grid-container">
