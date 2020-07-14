@@ -9,19 +9,19 @@ class Cart extends React.Component {
         //by default dont show
         this.state = {
             showCheckout: false,
-            name:"",
-            email:"",
-            address:"",
+            name: "",
+            email: "",
+            address: "",
         }
     }
 
-    handleInput = (e)=>{
+    handleInput = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     };
 
-    createOrder = e =>{
+    createOrder = e => {
         e.preventDefault();
         const order = {
             name: this.state.name,
@@ -123,15 +123,15 @@ class Cart extends React.Component {
                                                     Email
                                                 </label>
                                                 <input name="email" type="email" required onChange={this.handleInput}/>
-                                                <li>
-                                                    <label htmlFor="">
-                                                        Address
-                                                    </label>
-                                                    <input name="address" type="text" required onChange={this.handleInput}/>
-                                                </li>
-                                                <li>
-                                                    <button className="button primary" type="submit">Checkout</button>
-                                                </li>
+                                            </li>
+                                            <li>
+                                                <label htmlFor="">
+                                                    Address
+                                                </label>
+                                                <input name="address" type="text" required onChange={this.handleInput}/>
+                                            </li>
+                                            <li>
+                                                <button className="button primary" type="submit">Checkout</button>
                                             </li>
                                         </ul>
                                     </form>
