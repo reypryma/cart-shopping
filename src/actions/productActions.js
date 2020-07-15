@@ -1,10 +1,11 @@
-import {FETCH_PRODUCT} from "../utils/types";
+import {FETCH_PRODUCTS} from "../utils/types";
 
-export const fetchActions = () => async (dispatch) => {
-    const res = await fetch("/api/products")
-    //dispatch as action
+export const fetchProducts = () => async (dispatch) => {
+    const res = await fetch("/api/products");
+    const data = await res.json();
+    console.log(data);
     dispatch({
-        type: FETCH_PRODUCT,
-        payload: res.data,
-    })
+        type: FETCH_PRODUCTS,
+        payload: data,
+    });
 };
