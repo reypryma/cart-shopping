@@ -1,6 +1,8 @@
 import React from 'react';
 import formatCurrency from "../utils/util";
 import Fade from 'react-reveal/Fade'
+import {connect} from "react-redux";
+import {removeFromCart} from "../actions/cartActions";
 
 class Cart extends React.Component {
     static navigationOptions = {title: null,};
@@ -22,7 +24,7 @@ class Cart extends React.Component {
         })
     };
 
-    createOrder = e => {
+    createOrder = (e) => {
         e.preventDefault();
         const order = {
             name: this.state.name,
@@ -152,4 +154,8 @@ class Cart extends React.Component {
     }
 }
 
-export default Cart;
+export default connect((state) => ({
+        cartItems: state.cart.cartItems,
+    }),
+    {removeFromCart}
+)(Cart);
