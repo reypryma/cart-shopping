@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {filterProducts} from "../actions/productActions";
+import {filterProducts, sortProducts} from "../actions/productActions";
 
 class Filter extends React.Component {
     static navigationOptions = {title: null,};
@@ -23,14 +23,18 @@ class Filter extends React.Component {
     }
 
     render() {
-        return (
-            !this.props.filteredProducts ? (
-                <div>Loading...</div>
-            ) : (<div className="filter">
-                <div className="filter-result">{this.props.count} Products</div>
+        return !this.props.filteredProducts ? (
+            <div>Loading...</div>
+        ) : (
+            <div className="filter">
+                <div className="filter-result">{this.props.filteredProducts.length} Products</div>
                 <div className="filter-sort">
                     Order {" "}
-                    <select name="" id="" value={this.props.sort} onChange={this.props.sortProducts}>
+                    <select name="" id="" value={this.props.sort} onChange={
+                        (e) => this.props.sortProducts(
+                            this.props.filteredProducts,
+                            e.target.value
+                        )}>
                         <option>Latest</option>
                         <option value="lowest">Lowest</option>
                         <option value="highest">Highest</option>
@@ -38,7 +42,9 @@ class Filter extends React.Component {
                 </div>
                 <div className="filter-size">
                     Filter {" "}
-                    <select name="" id="" value={this.props.size} onChange={this.props.filterProducts}>
+                    <select name="" id="" value={this.props.size} onChange={(e)=>{
+                        this.props.filterProducts(this.props.products, e.target.value);
+                    }}>
                         <option value="">ALL</option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
@@ -49,7 +55,6 @@ class Filter extends React.Component {
                     </select>
                 </div>
             </div>)
-        );
     }
 }
 
@@ -62,5 +67,6 @@ export default connect(
     }),
     {
         filterProducts,
+        sortProducts,
     }
 )(Filter);
