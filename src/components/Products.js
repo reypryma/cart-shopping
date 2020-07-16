@@ -74,9 +74,9 @@ class Products extends React.Component {
                                         Available Sizes:{" "}
                                         {product.availableSizes.map((x) => (
                                             <span>
-                        {" "}
+                                                  {" "}
                                                 <button className="button">{x}</button>
-                      </span>
+                                          </span>
                                         ))}
                                     </p>
                                     <div className="product-price">
