@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {filterProducts} from "../actions/productActions";
 
 class Filter extends React.Component {
     static navigationOptions = {title: null,};
@@ -22,7 +24,9 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div className="filter">
+            !this.props.filteredProducts ? (
+                <div>Loading...</div>
+            ) : (<div className="filter">
                 <div className="filter-result">{this.props.count} Products</div>
                 <div className="filter-sort">
                     Order {" "}
@@ -44,9 +48,19 @@ class Filter extends React.Component {
                         <option value="XXL">XXL</option>
                     </select>
                 </div>
-            </div>
+            </div>)
         );
     }
 }
 
-export default Filter;
+export default connect(
+    (state) => ({
+        size: state.products.size,
+        sort: state.products.sort,
+        products: state.products.items,
+        filteredProducts: state.products.filteredItems,
+    }),
+    {
+        filterProducts,
+    }
+)(Filter);
