@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Order from "../components/Order";
+import Order from "../components/Orders";
 
 class AdminScreen extends Component {
     render() {
