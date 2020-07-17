@@ -1,10 +1,9 @@
 import React from 'react';
-import Products from "./components/Products";
-import Filter from "./components/Filter";
-import Cart from "./components/Cart";
 import {Provider} from "react-redux";
 import store from "./store";
 import {BrowserRouter, Link, Route} from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import AdminScreen from "./screens/AdminScreen";
 
 
 class App extends React.Component {
@@ -21,15 +20,6 @@ class App extends React.Component {
                             {/*Put admin before home*/}
                             <Route path = "/admin" component={AdminScreen}/>
                             <Route path = "/" component={HomeScreen} exact/>
-                            <div className="content">
-                                <div className="main">
-                                    <Filter/>
-                                    <Products/>
-                                </div>
-                                <div className="sidebar">
-                                    <Cart/>
-                                </div>
-                            </div>
                         </main>
                         <footer>All right is reserved.</footer>
                     </div>
