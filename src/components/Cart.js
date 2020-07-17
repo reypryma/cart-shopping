@@ -37,6 +37,10 @@ class Cart extends React.Component {
         this.props.createOrder(order);
     };
 
+    closeModal = () =>{
+        this.props.clearOrder();
+    };
+
     componentWillMount() {
     }
 
