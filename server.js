@@ -88,6 +88,18 @@ app.post("/api/orders", async (req, res) => {
     res.send(order);
 });
 
+app.get("api/orders", async (req, res)=>{
+    const orders = await Order.find({
+    //    Blank means get all order
+    });
+    res.send(orders);
+});
+
+app.delete("/api/orders/:id", async (req, res)=>{
+    const order = await Order.findByIdAndDelete(req.params.id);
+    res.send(order)
+});
+
 //launch server
 const port = process.env.PORT || 5000;
 
