@@ -15,6 +15,7 @@ class App extends React.Component {
                         <header>
                             {/*React Router a href => Link to*/}
                             <Link to="/">React Shopping Cart</Link>
+                            <Link to="/admin">Admin</Link>
                         </header>
                         <main>
                             {/*Put admin before home*/}
