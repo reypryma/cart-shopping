@@ -8,8 +8,13 @@ const app = express();
 //fix save body as json
 app.use(bodyParser.json());
 
+//Deploy: To render static file inside build file
+//Wherever this static file inside build will render as url / address
+app.use("/", express.static(__dirname + "/build"));
+app.get("/", (req, res) => res.sendFile(__dirname + "/build/index.html"));
+
 //init db
-mongoose.connect("mongodb://localhost/react-shopping-cart-db", {
+mongoose.connect(process.env.MONGODB_URL ||"mongodb://localhost/react-cart-db", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
