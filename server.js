@@ -14,7 +14,7 @@ app.use("/", express.static(__dirname + "/build"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/build/index.html"));
 
 //init db
-mongoose.connect("mongodb://localhost/react-cart-db", {
+mongoose.connect(process.env.MONGODB_URL ||"mongodb://localhost/react-cart-db", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
